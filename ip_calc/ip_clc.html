@@ -65,6 +65,7 @@
         <p><strong>First Host:</strong> <span id="firstHostLabel"></span></p>
         <p><strong>Last Host:</strong> <span id="lastHostLabel"></span></p>
         <p><strong>Broadcast:</strong> <span id="broadcastLabel"></span></p>
+        <p><strong>IP Type:</strong> <span id="ipTypeLabel"></span></p>
     </div>
 
     <script>
@@ -99,13 +100,17 @@
             // Определение количества узлов
             var nodes = Math.pow(2, 32 - bitmask) - 2;
 
+            // Определение типа IP
+            var ipType = getIPType(ipArray);
+
             // Вывод результатов
-            document.getElementById('nodesLabel').innerText = 'Result for Nodes to Host: ' + nodes;
-            document.getElementById('classLabel').innerText = 'Result for IP Class: ' + getIPClass(ipArray);
-            document.getElementById('networkLabel').innerText = 'Result for Network: ' + network;
-            document.getElementById('firstHostLabel').innerText = 'Result for First Host: ' + firstHost;
-            document.getElementById('lastHostLabel').innerText = 'Result for Last Host: ' + lastHost;
-            document.getElementById('broadcastLabel').innerText = 'Result for Broadcast: ' + broadcast;
+            document.getElementById('nodesLabel').innerText = nodes;
+            document.getElementById('classLabel').innerText = getIPClass(ipArray);
+            document.getElementById('networkLabel').innerText = network;
+            document.getElementById('firstHostLabel').innerText = firstHost;
+            document.getElementById('lastHostLabel').innerText = lastHost;
+            document.getElementById('broadcastLabel').innerText = broadcast;
+            document.getElementById('ipTypeLabel').innerText = ipType;
         }
 
         // Функция для проверки корректности IP-адреса
@@ -163,10 +168,28 @@
                 return 'Invalid IP Class';
             }
         }
+
+        // Функция для определения типа IP (локальный или глобальный)
+        function getIPType(ipArray) {
+            var firstOctet = parseInt(ipArray[0]);
+
+            // Стандартные диапазоны для локальных IP-адресов
+            var privateRange1 = firstOctet === 10;
+            var privateRange2 = firstOctet === 172 && parseInt(ipArray[1]) >= 16 && parseInt(ipArray[1]) <= 31;
+            var privateRange3 = firstOctet === 192 && parseInt(ipArray[1]) === 168;
+
+            if (privateRange1 || privateRange2 || privateRange3) {
+                return 'Local IP';
+            } else {
+                return 'Global IP';
+            }
+        }
     </script>
 
 </body>
 </html>
+
+
 
 
 

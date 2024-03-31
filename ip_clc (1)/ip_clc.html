@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 200px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 8px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>IP Calculator</h2>
+
+<!-- Поле ввода начальной сети -->
+<label for="initialNetwork">Initial Network:</label>
+<input type="text" id="initialNetwork" placeholder="Enter Initial Network">
+
+<!-- Поле ввода маски подсети (префикса) -->
+<label for="subnetPrefix">Subnet Prefix:</label>
+<input type="number" id="subnetPrefix" placeholder="Enter Subnet Prefix" min="1" max="31">
+
+<!-- Поле ввода количества узлов для разбиения -->
+<label for="nodesCount">Nodes Count:</label>
+<input type="number" id="nodesCount" placeholder="Enter Nodes Count">
+
+<!-- Поле ввода количества подсетей -->
+<label for="subnetsCount">Subnets Count:</label>
+<input type="number" id="subnetsCount" placeholder="Enter Subnets Count">
+
+<!-- Место для вывода результата агрегации подсетей -->
+<div id="aggregatedSubnets"></div>
+
+<!-- Кнопка для сохранения результата в файл -->
+<button onclick="saveAggregatedSubnetsToFile()">Save Result to File</button>
+
+<!-- Поле для вывода результата проверки достоверности сети -->
+<div id="networkValidationResult"></div>
+
+
+
+
+
+    <!-- Кнопка для выполнения расчетов -->
+    <button onclick="calculate()">Calculate</button>
+
+    <!-- Результаты расчетов -->
+    <div id="result">
+        <!-- Вывод результатов -->
+        <p><strong>Nodes to Host:</strong> <span id="nodesLabel"></span></p>
+        <p><strong>IP Class:</strong> <span id="classLabel"></span></p>
+        <p><strong>Network:</strong> <span id="networkLabel"></span></p>
+        <p><strong>First Host:</strong> <span id="firstHostLabel"></span></p>
+        <p><strong>Last Host:</strong> <span id="lastHostLabel"></span></p>
+        <p><strong>Broadcast:</strong> <span id="broadcastLabel"></span></p>
+        <p><strong>IP Type:</strong> <span id="ipTypeLabel"></span></p>
+        <p><strong>Subnet Mask (Decimal):</strong> <span id="subnetMaskDecimalLabel"></span></p>
+    </div>
+
+    <script>
+        // Функция для выполнения расчетов при нажатии кнопки
+function calculate() {
+    // Получение значений из полей ввода
+    var ipAddress = document.getElementById('ipAddress').value;
+    var bitmask = parseInt(document.getElementById('bitmask').value);
+
+    // Проверка введенных данных
+    if (!isValidIPAddress(ipAddress) || isNaN(bitmask) || bitmask < 1 || bitmask > 31) {
+        alert("Invalid input. Please enter valid IP address and bitmask (1-31).");
+        return;
+    }
+
+    var initialNetworkArray = ipAddress.split('.');
+    var subnetMaskArray = calculateSubnetMask(bitmask);
+
+    // Проверка достоверности сети
+    if (!validateNetwork(initialNetworkArray, subnetMaskArray)) {
+        alert("The network is not valid according to specified standards.");
+        return;
+    }
+
+    var nodesCount = parseInt(document.getElementById('nodesCount').value);
+
+    // Проверка наличия свободных адресов
+    if (nodesCount >= Math.pow(2, 32 - bitmask) - 2) {
+        alert("Not enough free addresses for the specified number of nodes.");
+        return;
+    }
+
+    // Расчеты
+    var ipArray = ipAddress.split('.');
+    var subnetArray = calculateSubnetMask(bitmask);
+
+    var networkArray = calculateNetwork(ipArray, subnetArray);
+    var network = networkArray.join('.');
+    var firstHostArray = networkArray.slice();
+    firstHostArray[3] = firstHostArray[3] + 1;
+    var firstHost = firstHostArray.join('.');
+    var lastHostArray = networkArray.slice();
+    lastHostArray[3] = lastHostArray[3] + (Math.pow(2, 32 - bitmask) - 2);
+    var lastHost = lastHostArray.join('.');
+    var broadcastArray = lastHostArray.slice();
+    broadcastArray[3] = broadcastArray[3] + 1;
+    var broadcast = broadcastArray.join('.');
+
+    // Определение количества узлов
+    var nodes = Math.pow(2, 32 - bitmask) - 2;
+
+    // Определение типа IP
+    var ipType = getIPType(ipArray);
+
+    // Вывод результатов
+    document.getElementById('nodesLabel').innerText = nodes;
+    document.getElementById('classLabel').innerText = getIPClass(ipArray);
+    document.getElementById('networkLabel').innerText = network;
+    document.getElementById('firstHostLabel').innerText = firstHost;
+    document.getElementById('lastHostLabel').innerText = lastHost;
+    document.getElementById('broadcastLabel').innerText = broadcast;
+    document.getElementById('ipTypeLabel').innerText = ipType;
+    document.getElementById('subnetMaskDecimalLabel').innerText = subnetArray.join('.');
+
+    // Генерация и вывод бинарного дерева
+    var binaryTree = generateBinaryTree(initialNetworkArray, subnetMaskArray, bitmask, nodesCount);
+    document.getElementById('binaryTree').innerHTML = binaryTree;
+
+    // Агрегация подсетей по заданной подсети
+    var targetNetwork = {
+        minValue: initialNetworkArray.join('.'),
+        maxValue: calculateMaxValue(initialNetworkArray, subnetMaskArray, bitmask)
+    };
+    var aggregatedSubnets = aggregateSubnetsByNetwork(rootNode, targetNetwork);
+    displayAggregatedSubnets(aggregatedSubnets);
+
+    // Сохранение результата в файл
+    saveAggregatedSubnetsToFile(aggregatedSubnets);
+
+     // Проверка достоверности сети
+     var isValidNetwork = validateNetwork(initialNetworkArray, subnetMaskArray);
+
+    // Вывод результата проверки достоверности сети
+    var networkValidationResultElement = document.getElementById('networkValidationResult');
+    networkValidationResultElement.innerText = isValidNetwork ? "Valid network according to specified standards." : "Invalid network according to specified standards.";
+}
+
+
+
+
+        // Функция для проверки корректности IP-адреса
+        function isValidIPAddress(ipAddress) {
+            var ipRegex = /^((25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)$/;
+            return ipRegex.test(ipAddress);
+        }
+
+        // Функция для выполнения расчета сети на основе IP-адреса и маски подсети
+        function calculateNetwork(ipArray, subnetArray) {
+            var networkArray = [];
+
+            for (var i = 0; i < 4; i++) {
+                networkArray[i] = ipArray[i] & subnetArray[i];
+            }
+
+            return networkArray;
+        }
+
+        // Функция для подсчета маски подсети на основе bitmask
+        function calculateSubnetMask(bitmask) {
+            var subnetArray = [0, 0, 0, 0];
+
+            for (var i = 0; i < 4; i++) {
+                for (var j = 7; j >= 0; j--) {
+                    if (bitmask > 0) {
+                        subnetArray[i] |= (1 << j);
+                        bitmask--;
+                    }
+                }
+            }
+
+            return subnetArray;
+        }
+
+        // Функция для определения класса IP-адреса
+        function getIPClass(ipArray) {
+            var firstOctet = parseInt(ipArray[0]);
+
+            if (firstOctet === 0) {
+                return 'Special Class: 0.0.0.0';
+            } else if (firstOctet >= 1 && firstOctet <= 126) {
+                return 'A';
+            } else if (firstOctet >= 128 && firstOctet <= 191) {
+                return 'B';
+            } else if (firstOctet >= 192 && firstOctet <= 223) {
+                return 'C';
+            } else if (firstOctet >= 224 && firstOctet <= 239) {
+                return 'D';
+            } else if (firstOctet >= 240 && firstOctet <= 255) {
+                return 'E';
+            } else if (ipArray.join('.') === '255.0.0.0') {
+                return 'Special Class: 255.0.0.0';
+            } else if (ipArray.join('.') === '127.0.0.0') {
+                return 'Special Class: 127.0.0.0';
+            } else {
+                return 'Invalid IP Class';
+            }
+        }
+
+        // Функция для определения типа IP (локальный или глобальный)
+        function getIPType(ipArray) {
+            var firstOctet = parseInt(ipArray[0]);
+
+            // Стандартные диапазоны для локальных IP-адресов
+            var privateRange1 = firstOctet === 10;
+            var privateRange2 = firstOctet === 172 && parseInt(ipArray[1]) >= 16 && parseInt(ipArray[1]) <= 31;
+            var privateRange3 = firstOctet === 192 && parseInt(ipArray[1]) === 168;
+
+            if (privateRange1 || privateRange2 || privateRange3) {
+                return 'Local IP';
+            } else {
+                return 'Global IP';
+            }
+        }
+
+        // Функция для генерации бинарного дерева
+        function generateBinaryTree(initialNetworkArray, subnetMaskArray, subnetPrefix, nodesCount, subnetsCount) {
+    // Создаем корневой узел для дерева
+    var rootNode = {
+        subnetId: initialNetworkArray.join('.'),
+        minValue: initialNetworkArray.join('.'),
+        maxValue: calculateMaxValue(initialNetworkArray, subnetMaskArray, subnetPrefix),
+        directBroadcast: calculateDirectBroadcast(initialNetworkArray, subnetMaskArray, subnetPrefix),
+        freeSubnets: [],
+        freeAddresses: calculateFreeAddresses(nodesCount, subnetPrefix)
+    };
+
+    // Добавляем подсети к корневому узлу
+    addSubnets(rootNode, subnetMaskArray, subnetPrefix, nodesCount, subnetsCount);
+
+    // Генерируем HTML для бинарного дерева
+    var treeHTML = generateTreeHTML(rootNode);
+
+    return treeHTML;
+}
+
+// Функция для расчета максимального значения адреса в подсети
+function calculateMaxValue(initialNetworkArray, subnetMaskArray, subnetPrefix) {
+    var maxValueArray = initialNetworkArray.slice();
+    for (var i = 0; i < 4; i++) {
+        maxValueArray[i] |= ~subnetMaskArray[i];
+    }
+    return maxValueArray.join('.');
+}
+
+// Функция для расчета direct broadcast
+function calculateDirectBroadcast(initialNetworkArray, subnetMaskArray, subnetPrefix) {
+    var broadcastArray = initialNetworkArray.slice();
+    for (var i = 0; i < 4; i++) {
+        broadcastArray[i] |= ~subnetMaskArray[i];
+    }
+    broadcastArray[3] -= 1; // Уменьшаем на 1, чтобы получить адрес direct broadcast
+    return broadcastArray.join('.');
+}
+
+// Функция для расчета свободных адресов
+function calculateFreeAddresses(nodesCount, subnetPrefix) {
+    return Math.pow(2, 32 - subnetPrefix) - 2 - nodesCount;
+}
+
+// Функция для добавления подсетей к узлу дерева (рекурсивно)
+function addSubnets(node, subnetMaskArray, subnetPrefix, nodesCount, subnetsCount) {
+    if (subnetsCount <= 0) return;
+
+    // Разбиваем текущую подсеть пополам
+    var newSubnetPrefix = subnetPrefix + 1;
+    var newSubnetMaskArray = calculateSubnetMask(newSubnetPrefix);
+    var newSubnetsCount = subnetsCount - 1;
+
+    // Создаем левого и правого потомка для текущего узла
+    var leftSubnet = {
+        subnetId: node.subnetId,
+        minValue: node.minValue,
+        maxValue: calculateMaxValue(node.minValue.split('.'), newSubnetMaskArray, newSubnetPrefix),
+        directBroadcast: calculateDirectBroadcast(node.minValue.split('.'), newSubnetMaskArray, newSubnetPrefix),
+        freeSubnets: [],
+        freeAddresses: calculateFreeAddresses(nodesCount, newSubnetPrefix)
+    };
+
+    var rightSubnet = {
+        subnetId: calculateNextSubnet(node.minValue.split('.'), newSubnetMaskArray, newSubnetPrefix),
+        minValue: calculateNextSubnet(node.minValue.split('.'), newSubnetMaskArray, newSubnetPrefix),
+        maxValue: calculateMaxValue(node.minValue.split('.'), newSubnetMaskArray, newSubnetPrefix),
+        directBroadcast: calculateDirectBroadcast(node.minValue.split('.'), newSubnetMaskArray, newSubnetPrefix),
+        freeSubnets: [],
+        freeAddresses: calculateFreeAddresses(nodesCount, newSubnetPrefix)
+    };
+
+    // Рекурсивно добавляем подсети для левого и правого поддеревьев
+    addSubnets(leftSubnet, newSubnetMaskArray, newSubnetPrefix, nodesCount, newSubnetsCount);
+    addSubnets(rightSubnet, newSubnetMaskArray, newSubnetPrefix, nodesCount, newSubnetsCount);
+
+    // Добавляем подсети в текущий узел
+    node.leftSubnet = leftSubnet;
+    node.rightSubnet = rightSubnet;
+}
+
+// Функция для вычисления следующей подсети
+function calculateNextSubnet(networkArray, subnetMaskArray, subnetPrefix) {
+    var subnetIncrement = Math.pow(2, 32 - subnetPrefix);
+    var nextSubnet = networkArray.map(function (octet, index) {
+        return parseInt(octet) + (subnetMaskArray[index] === 0 ? subnetIncrement : 0);
+    });
+    return nextSubnet.join('.');
+}
+
+// Генерация HTML для бинарного дерева
+function generateTreeHTML(node) {
+    var html = '<ul>' +
+        '<li>Subnet ID: ' + node.subnetId + '</li>' +
+        '<li>Min Value: ' + node.minValue + '</li>' +
+        '<li>Max Value: ' + node.maxValue + '</li>' +
+        '<li>Direct Broadcast: ' + node.directBroadcast + '</li>' +
+        '<li>Free Addresses: ' + node.freeAddresses + '</li>';
+    
+    if (node.leftSubnet && node.rightSubnet) {
+        html += '<li>Left Subnet: ' + generateTreeHTML(node.leftSubnet) + '</li>' +
+                '<li>Right Subnet: ' + generateTreeHTML(node.rightSubnet) + '</li>';
+    }
+
+    html += '</ul>';
+    return html;
+}
+
+// Функция для вывода результата агрегации подсетей
+function displayAggregatedSubnets(aggregatedSubnets) {
+    var aggregatedSubnetsHTML = '<h3>Aggregated Subnets</h3>';
+    if (aggregatedSubnets.length > 0) {
+        aggregatedSubnetsHTML += '<ul>';
+        aggregatedSubnets.forEach(function(subnet) {
+            aggregatedSubnetsHTML += '<li>';
+            aggregatedSubnetsHTML += '<strong>Subnet ID:</strong> ' + subnet.subnetId + '<br>';
+            aggregatedSubnetsHTML += '<strong>Min Value:</strong> ' + subnet.minValue + '<br>';
+            aggregatedSubnetsHTML += '<strong>Max Value:</strong> ' + subnet.maxValue + '<br>';
+            aggregatedSubnetsHTML += '<strong>Direct Broadcast:</strong> ' + subnet.directBroadcast + '<br>';
+            aggregatedSubnetsHTML += '<strong>Free Addresses:</strong> ' + subnet.freeAddresses;
+            aggregatedSubnetsHTML += '</li>';
+        });
+        aggregatedSubnetsHTML += '</ul>';
+    } else {
+        aggregatedSubnetsHTML += '<p>No aggregated subnets found.</p>';
+    }
+    document.getElementById('aggregatedSubnets').innerHTML = aggregatedSubnetsHTML;
+}
+
+// Функция для сохранения результата агрегации подсетей в файл
+function saveAggregatedSubnetsToFile() {
+    // Получаем результат агрегации подсетей
+    var targetNetwork = {
+        minValue: initialNetworkArray.join('.'),
+        maxValue: calculateMaxValue(initialNetworkArray, subnetMaskArray, subnetPrefix)
+    };
+    var aggregatedSubnets = aggregateSubnetsByNetwork(rootNode, targetNetwork);
+
+    // Генерируем текст для сохранения в файл
+    var aggregatedSubnetsText = 'Aggregated Subnets\n\n';
+    if (aggregatedSubnets.length > 0) {
+        aggregatedSubnets.forEach(function(subnet) {
+            aggregatedSubnetsText += 'Subnet ID: ' + subnet.subnetId + '\n';
+            aggregatedSubnetsText += 'Min Value: ' + subnet.minValue + '\n';
+            aggregatedSubnetsText += 'Max Value: ' + subnet.maxValue + '\n';
+            aggregatedSubnetsText += 'Direct Broadcast: ' + subnet.directBroadcast + '\n';
+            aggregatedSubnetsText += 'Free Addresses: ' + subnet.freeAddresses + '\n\n';
+        });
+    } else {
+        aggregatedSubnetsText += 'No aggregated subnets found.\n';
+    }
+
+    // Сохраняем результат в файл
+    var filename = 'aggregated_subnets.txt';
+    saveToFile(aggregatedSubnetsText, filename);
+}
+// Функция для проверки достоверности сети
+function validateNetwork(initialNetworkArray, subnetMaskArray) {
+    // Собираем IP-адрес и маску подсети в одну строку
+    var ipAddress = initialNetworkArray.join('.');
+    var subnetMask = subnetMaskArray.join('.');
+
+    // Объект с диапазонами IP-адресов для каждого стандарта RFC
+    var standards = {
+        "RFC 5737": [
+            { "min": "192.0.2.0", "max": "192.0.2.255" }
+        ],
+        "RFC 1918": [
+            { "min": "10.0.0.0", "max": "10.255.255.255" },
+            { "min": "172.16.0.0", "max": "172.31.255.255" },
+            { "min": "192.168.0.0", "max": "192.168.255.255" }
+        ],
+        "RFC 3068": [
+            { "min": "192.88.99.0", "max": "192.88.99.255" }
+        ],
+        "RFC 3927": [
+            { "min": "169.254.0.0", "max": "169.254.255.255" }
+        ],
+        "RFC 1122": [
+            { "min": "0.0.0.0", "max": "0.255.255.255" }
+        ],
+        "RFC 3330": [
+            { "min": "224.0.0.0", "max": "255.255.255.255" }
+        ]
+    };
+
+    // Проверяем, принадлежит ли введенный IP-адрес какому-либо диапазону
+    for (var standard in standards) {
+        var ranges = standards[standard];
+        for (var i = 0; i < ranges.length; i++) {
+            var range = ranges[i];
+            var min = ipToNumber(range.min);
+            var max = ipToNumber(range.max);
+            var ip = ipToNumber(ipAddress);
+
+            if (ip >= min && ip <= max) {
+                return true;
+            }
+        }
+    }
+
+    // Если не принадлежит ни одному диапазону, возвращаем false
+    return false;
+}
+
+// Функция для преобразования IP-адреса в число для сравнения
+function ipToNumber(ip) {
+    var parts = ip.split('.');
+    return (parseInt(parts[0]) << 24) + (parseInt(parts[1]) << 16) + (parseInt(parts[2]) << 8) + parseInt(parts[3]);
+}
+
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+

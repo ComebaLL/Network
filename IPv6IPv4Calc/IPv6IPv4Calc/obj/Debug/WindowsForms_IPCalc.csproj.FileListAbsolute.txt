@@ -1,0 +1,116 @@
+C:\Users\budae\Desktop\Учебка\5 семестр\Вычислительные сети, системы и телекоммуникации\Лабораторная работа 4\WindowsForms_IPCalc\bin\Debug\WindowsForms_IPCalc.exe.config
+C:\Users\budae\Desktop\Учебка\5 семестр\Вычислительные сети, системы и телекоммуникации\Лабораторная работа 4\WindowsForms_IPCalc\bin\Debug\WindowsForms_IPCalc.exe
+C:\Users\budae\Desktop\Учебка\5 семестр\Вычислительные сети, системы и телекоммуникации\Лабораторная работа 4\WindowsForms_IPCalc\bin\Debug\WindowsForms_IPCalc.pdb
+C:\Users\budae\Desktop\Учебка\5 семестр\Вычислительные сети, системы и телекоммуникации\Лабораторная работа 4\WindowsForms_IPCalc\obj\Debug\WindowsForms_IPCalc.csproj.AssemblyReference.cache
+C:\Users\budae\Desktop\Учебка\5 семестр\Вычислительные сети, системы и телекоммуникации\Лабораторная работа 4\WindowsForms_IPCalc\obj\Debug\WindowsForms_IPCalc.csproj.SuggestedBindingRedirects.cache
+C:\Users\budae\Desktop\Учебка\5 семестр\Вычислительные сети, системы и телекоммуникации\Лабораторная работа 4\WindowsForms_IPCalc\obj\Debug\WindowsForms_IPCalc.Properties.Resources.resources
+C:\Users\budae\Desktop\Учебка\5 семестр\Вычислительные сети, системы и телекоммуникации\Лабораторная работа 4\WindowsForms_IPCalc\obj\Debug\WindowsForms_IPCalc.csproj.GenerateResource.cache
+C:\Users\budae\Desktop\Учебка\5 семестр\Вычислительные сети, системы и телекоммуникации\Лабораторная работа 4\WindowsForms_IPCalc\obj\Debug\WindowsForms_IPCalc.csproj.CoreCompileInputs.cache
+C:\Users\budae\Desktop\Учебка\5 семестр\Вычислительные сети, системы и телекоммуникации\Лабораторная работа 4\WindowsForms_IPCalc\obj\Debug\WindowsForms_IPCalc.exe
+C:\Users\budae\Desktop\Учебка\5 семестр\Вычислительные сети, системы и телекоммуникации\Лабораторная работа 4\WindowsForms_IPCalc\obj\Debug\WindowsForms_IPCalc.pdb
+C:\Users\budae\Desktop\Учебка\5 семестр\Вычислительные сети, системы и телекоммуникации\Лабораторная работа 4\WindowsForms_IPCalc\obj\Debug\WindowsForms_IPCalc.Form1.resources
+C:\Users\budae\Desktop\WindowsForms_IPCalc\bin\Debug\WindowsForms_IPCalc.exe.config
+C:\Users\budae\Desktop\WindowsForms_IPCalc\bin\Debug\WindowsForms_IPCalc.exe
+C:\Users\budae\Desktop\WindowsForms_IPCalc\bin\Debug\WindowsForms_IPCalc.pdb
+C:\Users\budae\Desktop\WindowsForms_IPCalc\obj\Debug\WindowsForms_IPCalc.csproj.AssemblyReference.cache
+C:\Users\budae\Desktop\WindowsForms_IPCalc\obj\Debug\WindowsForms_IPCalc.csproj.SuggestedBindingRedirects.cache
+C:\Users\budae\Desktop\WindowsForms_IPCalc\obj\Debug\WindowsForms_IPCalc.Form1.resources
+C:\Users\budae\Desktop\WindowsForms_IPCalc\obj\Debug\WindowsForms_IPCalc.Properties.Resources.resources
+C:\Users\budae\Desktop\WindowsForms_IPCalc\obj\Debug\WindowsForms_IPCalc.csproj.GenerateResource.cache
+C:\Users\budae\Desktop\WindowsForms_IPCalc\obj\Debug\WindowsForms_IPCalc.csproj.CoreCompileInputs.cache
+C:\Users\budae\Desktop\WindowsForms_IPCalc\obj\Debug\WindowsForms_IPCalc.exe
+C:\Users\budae\Desktop\WindowsForms_IPCalc\obj\Debug\WindowsForms_IPCalc.pdb
+C:\Users\budae\Desktop\Учебка\5 семестр\5 семестр\Вычислительные сети, системы и телекоммуникации\Лабораторная работа 4\WindowsForms_IPCalc\bin\Debug\WindowsForms_IPCalc.exe.config
+C:\Users\budae\Desktop\Учебка\5 семестр\5 семестр\Вычислительные сети, системы и телекоммуникации\Лабораторная работа 4\WindowsForms_IPCalc\bin\Debug\WindowsForms_IPCalc.exe
+C:\Users\budae\Desktop\Учебка\5 семестр\5 семестр\Вычислительные сети, системы и телекоммуникации\Лабораторная работа 4\WindowsForms_IPCalc\bin\Debug\WindowsForms_IPCalc.pdb
+C:\Users\budae\Desktop\Учебка\5 семестр\5 семестр\Вычислительные сети, системы и телекоммуникации\Лабораторная работа 4\WindowsForms_IPCalc\obj\Debug\WindowsForms_IPCalc.csproj.AssemblyReference.cache
+C:\Users\budae\Desktop\Учебка\5 семестр\5 семестр\Вычислительные сети, системы и телекоммуникации\Лабораторная работа 4\WindowsForms_IPCalc\obj\Debug\WindowsForms_IPCalc.Form1.resources
+C:\Users\budae\Desktop\Учебка\5 семестр\5 семестр\Вычислительные сети, системы и телекоммуникации\Лабораторная работа 4\WindowsForms_IPCalc\obj\Debug\WindowsForms_IPCalc.Properties.Resources.resources
+C:\Users\budae\Desktop\Учебка\5 семестр\5 семестр\Вычислительные сети, системы и телекоммуникации\Лабораторная работа 4\WindowsForms_IPCalc\obj\Debug\WindowsForms_IPCalc.csproj.GenerateResource.cache
+C:\Users\budae\Desktop\Учебка\5 семестр\5 семестр\Вычислительные сети, системы и телекоммуникации\Лабораторная работа 4\WindowsForms_IPCalc\obj\Debug\WindowsForms_IPCalc.csproj.CoreCompileInputs.cache
+C:\Users\budae\Desktop\Учебка\5 семестр\5 семестр\Вычислительные сети, системы и телекоммуникации\Лабораторная работа 4\WindowsForms_IPCalc\obj\Debug\WindowsForms_IPCalc.exe
+C:\Users\budae\Desktop\Учебка\5 семестр\5 семестр\Вычислительные сети, системы и телекоммуникации\Лабораторная работа 4\WindowsForms_IPCalc\obj\Debug\WindowsForms_IPCalc.pdb
+C:\Users\budae\Desktop\Учебка\6 семестр\Протоколы вычислительных сетей\WindowsForms_IPCalc\bin\Debug\WindowsForms_IPCalc.exe.config
+C:\Users\budae\Desktop\Учебка\6 семестр\Протоколы вычислительных сетей\WindowsForms_IPCalc\bin\Debug\WindowsForms_IPCalc.exe
+C:\Users\budae\Desktop\Учебка\6 семестр\Протоколы вычислительных сетей\WindowsForms_IPCalc\bin\Debug\WindowsForms_IPCalc.pdb
+C:\Users\budae\Desktop\Учебка\6 семестр\Протоколы вычислительных сетей\WindowsForms_IPCalc\obj\Debug\WindowsForms_IPCalc.csproj.AssemblyReference.cache
+C:\Users\budae\Desktop\Учебка\6 семестр\Протоколы вычислительных сетей\WindowsForms_IPCalc\obj\Debug\WindowsForms_IPCalc.Form1.resources
+C:\Users\budae\Desktop\Учебка\6 семестр\Протоколы вычислительных сетей\WindowsForms_IPCalc\obj\Debug\WindowsForms_IPCalc.Properties.Resources.resources
+C:\Users\budae\Desktop\Учебка\6 семестр\Протоколы вычислительных сетей\WindowsForms_IPCalc\obj\Debug\WindowsForms_IPCalc.csproj.GenerateResource.cache
+C:\Users\budae\Desktop\Учебка\6 семестр\Протоколы вычислительных сетей\WindowsForms_IPCalc\obj\Debug\WindowsForms_IPCalc.csproj.CoreCompileInputs.cache
+C:\Users\budae\Desktop\Учебка\6 семестр\Протоколы вычислительных сетей\WindowsForms_IPCalc\obj\Debug\WindowsForms_IPCalc.exe
+C:\Users\budae\Desktop\Учебка\6 семестр\Протоколы вычислительных сетей\WindowsForms_IPCalc\obj\Debug\WindowsForms_IPCalc.pdb
+C:\Users\budae\Desktop\Учебка\6 семестр\Протоколы вычислительных сетей\IPv6 CALC\bin\Debug\WindowsForms_IPCalc.exe.config
+C:\Users\budae\Desktop\Учебка\6 семестр\Протоколы вычислительных сетей\IPv6 CALC\bin\Debug\WindowsForms_IPCalc.exe
+C:\Users\budae\Desktop\Учебка\6 семестр\Протоколы вычислительных сетей\IPv6 CALC\bin\Debug\WindowsForms_IPCalc.pdb
+C:\Users\budae\Desktop\Учебка\6 семестр\Протоколы вычислительных сетей\IPv6 CALC\obj\Debug\WindowsForms_IPCalc.csproj.AssemblyReference.cache
+C:\Users\budae\Desktop\Учебка\6 семестр\Протоколы вычислительных сетей\IPv6 CALC\obj\Debug\WindowsForms_IPCalc.Form1.resources
+C:\Users\budae\Desktop\Учебка\6 семестр\Протоколы вычислительных сетей\IPv6 CALC\obj\Debug\WindowsForms_IPCalc.Properties.Resources.resources
+C:\Users\budae\Desktop\Учебка\6 семестр\Протоколы вычислительных сетей\IPv6 CALC\obj\Debug\WindowsForms_IPCalc.csproj.GenerateResource.cache
+C:\Users\budae\Desktop\Учебка\6 семестр\Протоколы вычислительных сетей\IPv6 CALC\obj\Debug\WindowsForms_IPCalc.csproj.CoreCompileInputs.cache
+C:\Users\budae\Desktop\Учебка\6 семестр\Протоколы вычислительных сетей\IPv6 CALC\obj\Debug\WindowsForms_IPCalc.exe
+C:\Users\budae\Desktop\Учебка\6 семестр\Протоколы вычислительных сетей\IPv6 CALC\obj\Debug\WindowsForms_IPCalc.pdb
+C:\Users\budae\Desktop\Учебка\6 семестр\Протоколы вычислительных сетей\IPv6Calc\bin\Debug\WindowsForms_IPCalc.exe.config
+C:\Users\budae\Desktop\Учебка\6 семестр\Протоколы вычислительных сетей\IPv6Calc\bin\Debug\WindowsForms_IPCalc.exe
+C:\Users\budae\Desktop\Учебка\6 семестр\Протоколы вычислительных сетей\IPv6Calc\bin\Debug\WindowsForms_IPCalc.pdb
+C:\Users\budae\Desktop\Учебка\6 семестр\Протоколы вычислительных сетей\IPv6Calc\obj\Debug\WindowsForms_IPCalc.csproj.AssemblyReference.cache
+C:\Users\budae\Desktop\Учебка\6 семестр\Протоколы вычислительных сетей\IPv6Calc\obj\Debug\WindowsForms_IPCalc.Form1.resources
+C:\Users\budae\Desktop\Учебка\6 семестр\Протоколы вычислительных сетей\IPv6Calc\obj\Debug\WindowsForms_IPCalc.Properties.Resources.resources
+C:\Users\budae\Desktop\Учебка\6 семестр\Протоколы вычислительных сетей\IPv6Calc\obj\Debug\WindowsForms_IPCalc.csproj.GenerateResource.cache
+C:\Users\budae\Desktop\Учебка\6 семестр\Протоколы вычислительных сетей\IPv6Calc\obj\Debug\WindowsForms_IPCalc.csproj.CoreCompileInputs.cache
+C:\Users\budae\Desktop\Учебка\6 семестр\Протоколы вычислительных сетей\IPv6Calc\obj\Debug\WindowsForms_IPCalc.exe
+C:\Users\budae\Desktop\Учебка\6 семестр\Протоколы вычислительных сетей\IPv6Calc\obj\Debug\WindowsForms_IPCalc.pdb
+D:\Рабочий стол\Computer network protocols\IPv6Calc\bin\Debug\WindowsForms_IPCalc.exe.config
+D:\Рабочий стол\Computer network protocols\IPv6Calc\bin\Debug\WindowsForms_IPCalc.exe
+D:\Рабочий стол\Computer network protocols\IPv6Calc\bin\Debug\WindowsForms_IPCalc.pdb
+D:\Рабочий стол\Computer network protocols\IPv6Calc\obj\Debug\WindowsForms_IPCalc.csproj.AssemblyReference.cache
+D:\Рабочий стол\Computer network protocols\IPv6Calc\obj\Debug\WindowsForms_IPCalc.Form1.resources
+D:\Рабочий стол\Computer network protocols\IPv6Calc\obj\Debug\WindowsForms_IPCalc.Properties.Resources.resources
+D:\Рабочий стол\Computer network protocols\IPv6Calc\obj\Debug\WindowsForms_IPCalc.csproj.GenerateResource.cache
+D:\Рабочий стол\Computer network protocols\IPv6Calc\obj\Debug\WindowsForms_IPCalc.csproj.CoreCompileInputs.cache
+D:\Рабочий стол\Computer network protocols\IPv6Calc\obj\Debug\WindowsForms_IPCalc.exe
+D:\Рабочий стол\Computer network protocols\IPv6Calc\obj\Debug\WindowsForms_IPCalc.pdb
+D:\Рабочий стол\Computer network protocols\IPv6Calc\obj\Debug\WindowsForms_IPCalc.Form2.resources
+D:\Рабочий стол\Computer network protocols\IPv6IPv4Calc\bin\Debug\WindowsForms_IPCalc.exe.config
+D:\Рабочий стол\Computer network protocols\IPv6IPv4Calc\bin\Debug\WindowsForms_IPCalc.exe
+D:\Рабочий стол\Computer network protocols\IPv6IPv4Calc\bin\Debug\WindowsForms_IPCalc.pdb
+D:\Рабочий стол\Computer network protocols\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.csproj.AssemblyReference.cache
+D:\Рабочий стол\Computer network protocols\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.Form1.resources
+D:\Рабочий стол\Computer network protocols\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.Form2.resources
+D:\Рабочий стол\Computer network protocols\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.Properties.Resources.resources
+D:\Рабочий стол\Computer network protocols\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.csproj.GenerateResource.cache
+D:\Рабочий стол\Computer network protocols\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.csproj.CoreCompileInputs.cache
+D:\Рабочий стол\Computer network protocols\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.exe
+D:\Рабочий стол\Computer network protocols\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.pdb
+D:\Study\Учеба(ноутбук)\6semestr\Computer network protocols\IPv6IPv4Calc\bin\Debug\WindowsForms_IPCalc.exe.config
+D:\Study\Учеба(ноутбук)\6semestr\Computer network protocols\IPv6IPv4Calc\bin\Debug\WindowsForms_IPCalc.exe
+D:\Study\Учеба(ноутбук)\6semestr\Computer network protocols\IPv6IPv4Calc\bin\Debug\WindowsForms_IPCalc.pdb
+D:\Study\Учеба(ноутбук)\6semestr\Computer network protocols\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.csproj.AssemblyReference.cache
+D:\Study\Учеба(ноутбук)\6semestr\Computer network protocols\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.Form1.resources
+D:\Study\Учеба(ноутбук)\6semestr\Computer network protocols\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.Form2.resources
+D:\Study\Учеба(ноутбук)\6semestr\Computer network protocols\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.Properties.Resources.resources
+D:\Study\Учеба(ноутбук)\6semestr\Computer network protocols\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.csproj.GenerateResource.cache
+D:\Study\Учеба(ноутбук)\6semestr\Computer network protocols\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.csproj.CoreCompileInputs.cache
+D:\Study\Учеба(ноутбук)\6semestr\Computer network protocols\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.exe
+D:\Study\Учеба(ноутбук)\6semestr\Computer network protocols\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.pdb
+C:\Users\gumba\Downloads\IPv6IPv4Calc\IPv6IPv4Calc\bin\Debug\WindowsForms_IPCalc.exe.config
+C:\Users\gumba\Downloads\IPv6IPv4Calc\IPv6IPv4Calc\bin\Debug\WindowsForms_IPCalc.exe
+C:\Users\gumba\Downloads\IPv6IPv4Calc\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.csproj.AssemblyReference.cache
+C:\Users\gumba\Downloads\IPv6IPv4Calc\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.Form1.resources
+C:\Users\gumba\Downloads\IPv6IPv4Calc\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.Form2.resources
+C:\Users\gumba\Downloads\IPv6IPv4Calc\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.Properties.Resources.resources
+C:\Users\gumba\Downloads\IPv6IPv4Calc\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.csproj.GenerateResource.cache
+C:\Users\gumba\Downloads\IPv6IPv4Calc\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.csproj.CoreCompileInputs.cache
+C:\Users\gumba\Downloads\IPv6IPv4Calc\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.exe
+C:\Users\gumba\Downloads\IPv6IPv4Calc\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.pdb
+D:\ЗАБгу\3ий курс\сети\IPv6IPv4Calc\IPv6IPv4Calc\bin\Debug\WindowsForms_IPCalc.exe.config
+D:\ЗАБгу\3ий курс\сети\IPv6IPv4Calc\IPv6IPv4Calc\bin\Debug\WindowsForms_IPCalc.exe
+D:\ЗАБгу\3ий курс\сети\IPv6IPv4Calc\IPv6IPv4Calc\bin\Debug\WindowsForms_IPCalc.pdb
+D:\ЗАБгу\3ий курс\сети\IPv6IPv4Calc\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.csproj.AssemblyReference.cache
+D:\ЗАБгу\3ий курс\сети\IPv6IPv4Calc\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.Form1.resources
+D:\ЗАБгу\3ий курс\сети\IPv6IPv4Calc\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.Form2.resources
+D:\ЗАБгу\3ий курс\сети\IPv6IPv4Calc\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.Properties.Resources.resources
+D:\ЗАБгу\3ий курс\сети\IPv6IPv4Calc\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.csproj.GenerateResource.cache
+D:\ЗАБгу\3ий курс\сети\IPv6IPv4Calc\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.csproj.CoreCompileInputs.cache
+D:\ЗАБгу\3ий курс\сети\IPv6IPv4Calc\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.exe
+D:\ЗАБгу\3ий курс\сети\IPv6IPv4Calc\IPv6IPv4Calc\obj\Debug\WindowsForms_IPCalc.pdb

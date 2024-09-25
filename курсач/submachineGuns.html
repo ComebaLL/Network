@@ -1,0 +1,73 @@
+<!-- submachineGuns.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Экземпляры пистолетов-пулеметов - Шота у Ашота</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1em 0;
+    }
+
+    section {
+      margin: 20px;
+    }
+
+    #submachineGuns-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .submachineGun {
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin: 10px;
+      text-align: center;
+      background-color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Экземпляры пистолетов-пулеметов - Шота у Ашота</h1>
+  </header>
+
+  <section>
+    <div id="submachineGuns-container"></div>
+  </section>
+
+  <script>
+    // Здесь вы можете добавить JavaScript-код для загрузки и отображения экземпляров пистолетов-пулеметов.
+    // В данном примере я просто добавил два примера пистолетов-пулеметов.
+    document.addEventListener("DOMContentLoaded", function() {
+      const submachineGunsContainer = document.getElementById('submachineGuns-container');
+      const submachineGuns = [
+        { name: 'Пистолет-пулемет 1', description: 'Описание пистолета-пулемета 1.' },
+        { name: 'Пистолет-пулемет 2', description: 'Описание пистолета-пулемета 2.' },
+      ];
+
+      submachineGuns.forEach(submachineGun => {
+        const submachineGunElement = document.createElement('div');
+        submachineGunElement.classList.add('submachineGun');
+        submachineGunElement.innerHTML = `<h3>${submachineGun.name}</h3><p>${submachineGun.description}</p>`;
+        submachineGunsContainer.appendChild(submachineGunElement);
+      });
+    });
+  </script>
+
+</body>
+</html>

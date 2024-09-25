@@ -1,0 +1,73 @@
+<!-- coldWeapons.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Экземпляры холодного оружия - Шота у Ашота</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1em 0;
+    }
+
+    section {
+      margin: 20px;
+    }
+
+    #coldWeapons-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .coldWeapon {
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin: 10px;
+      text-align: center;
+      background-color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Экземпляры холодного оружия - Шота у Ашота</h1>
+  </header>
+
+  <section>
+    <div id="coldWeapons-container"></div>
+  </section>
+
+  <script>
+    // Здесь вы можете добавить JavaScript-код для загрузки и отображения экземпляров холодного оружия.
+    // В данном примере я просто добавил два примера холодного оружия.
+    document.addEventListener("DOMContentLoaded", function() {
+      const coldWeaponsContainer = document.getElementById('coldWeapons-container');
+      const coldWeapons = [
+        { name: 'Холодное оружие 1', description: 'Описание холодного оружия 1.' },
+        { name: 'Холодное оружие 2', description: 'Описание холодного оружия 2.' },
+      ];
+
+      coldWeapons.forEach(coldWeapon => {
+        const coldWeaponElement = document.createElement('div');
+        coldWeaponElement.classList.add('coldWeapon');
+        coldWeaponElement.innerHTML = `<h3>${coldWeapon.name}</h3><p>${coldWeapon.description}</p>`;
+        coldWeaponsContainer.appendChild(coldWeaponElement);
+      });
+    });
+  </script>
+
+</body>
+</html>

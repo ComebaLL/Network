@@ -1,0 +1,73 @@
+<!-- pistols.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Экземпляры пистолетов - Шота у Ашота</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1em 0;
+    }
+
+    section {
+      margin: 20px;
+    }
+
+    #pistols-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .pistol {
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin: 10px;
+      text-align: center;
+      background-color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Экземпляры пистолетов - Шота у Ашота</h1>
+  </header>
+
+  <section>
+    <div id="pistols-container"></div>
+  </section>
+
+  <script>
+    // Здесь вы можете добавить JavaScript-код для загрузки и отображения экземпляров пистолетов.
+    // В данном примере я просто добавил два примера пистолетов.
+    document.addEventListener("DOMContentLoaded", function() {
+      const pistolsContainer = document.getElementById('pistols-container');
+      const pistols = [
+        { name: 'Пистолет 1', description: 'Описание пистолета 1.' },
+        { name: 'Пистолет 2', description: 'Описание пистолета 2.' },
+      ];
+
+      pistols.forEach(pistol => {
+        const pistolElement = document.createElement('div');
+        pistolElement.classList.add('pistol');
+        pistolElement.innerHTML = `<h3>${pistol.name}</h3><p>${pistol.description}</p>`;
+        pistolsContainer.appendChild(pistolElement);
+      });
+    });
+  </script>
+
+</body>
+</html>

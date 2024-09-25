@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Шота у Ашота - Продажа Оружия</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1em 0;
+    }
+
+    nav {
+      text-align: center;
+      padding: 1em 0;
+    }
+
+    nav a {
+      margin: 0 1em;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+
+    section {
+      margin: 20px;
+    }
+
+    #weapons-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .weapon {
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin: 10px;
+      text-align: center;
+      background-color: #fff;
+    }
+
+    #login-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 10px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    #login-modal,
+    #register-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      z-index: 2;
+    }
+
+    #login-modal h2,
+    #register-modal h2 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Шота у Ашота - Продажа Оружия</h1>
+  </header>
+
+  <?php
+    session_start();
+    if (isset($_SESSION['username'])) {
+      echo '<p>Привет, ' . $_SESSION['username'] . '! <a href="logout.php">Выйти</a></p>';
+    } else {
+      echo '<button id="login-button" onclick="showLoginModal()">Войти</button>';
+    }
+  ?>
+  
+  <nav>
+    <a href="#" onclick="showWeapons('pistols')">Пистолеты</a>
+    <a href="#" onclick="showWeapons('coldWeapons')">Холодное оружие</a>
+    <a href="#" onclick="showWeapons('submachineGuns')">Пистолеты-пулеметы</a>
+  </nav>
+
+  <section>
+    <div id="weapons-container"></div>
+  </section>
+
+  <div id="login-modal">
+    <!-- ... (код формы входа остается прежним) ... -->
+  </div>
+
+  <div id="register-modal">
+    <!-- ... (код формы регистрации остается прежним) ... -->
+  </div>
+
+  <script>
+    function showWeapons(weaponType) {
+      let redirectPage;
+
+      switch (weaponType) {
+        case 'pistols':
+          redirectPage = 'pistosls.html';
+          break;
+        case 'coldWeapons':
+          redirectPage = 'coldWeapons.html';
+          break;
+        case 'submachineGuns':
+          redirectPage = 'submachineGuns.html';
+          break;
+        default:
+          break;
+      }
+
+      if (redirectPage) {
+        window.location.href = redirectPage;
+      } else {
+        const weaponsContainer = document.getElementById('weapons-container');
+        weaponsContainer.innerHTML = '';
+
+        const weapons = getWeaponsByType(weaponType);
+        weapons.forEach(weapon => {
+          const weaponElement = document.createElement('div');
+          weaponElement.classList.add('weapon');
+          weaponElement.innerHTML = `<h3>${weapon.name}</h3><p>${weapon.description}</p>`;
+          weaponsContainer.appendChild(weaponElement);
+        });
+      }
+    }
+
+    function showLoginModal() {
+      document.getElementById('login-modal').style.display = 'block';
+      document.getElementById('register-modal').style.display = 'none';
+    }
+
+    function showRegisterModal() {
+      document.getElementById('register-modal').style.display = 'block';
+      document.getElementById('login-modal').style.display = 'none';
+    }
+
+    function login() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      // Здесь вы можете реализовать проверку учетных данных.
+      // В этом примере предполагается, что учетные данные хранятся в простом объекте.
+      const users = {
+        "user1": "password1",
+        "user2": "password2"
+      };
+
+      if (users[username] && users[username] === password) {
+        alert('Вход успешен!');
+        // Дополнительные действия после входа
+      } else {
+        alert('Ошибка входа. Проверьте имя пользователя и пароль.');
+      }
+    }
+
+    function register() {
+      const newUsername = document.getElementById('newUsername').value;
+      const newPassword = document.getElementById('newPassword').value;
+
+      // Здесь вы можете реализовать логику регистрации.
+      // В этом примере новые учетные данные просто добавляются к объекту users.
+      // В реальном приложении это должно быть сохранено в базе данных.
+      users[newUsername] = newPassword;
+
+      alert('Регистрация успешна!');
+      showLoginModal(); // после регистрации показываем форму входа
+    }
+  </script>
+
+  
+</body>
+</html>
+
+

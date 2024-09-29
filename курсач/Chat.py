@@ -1,103 +1,86 @@
-import asyncio
-from pywebio import start_server
-from pywebio.input import *
-from pywebio.output import *
-from pywebio.session import defer_call, info as session_info, run_async, run_js
+from flask import Flask, render_template, request 
+from flask_socketio import SocketIO, emit
+from flask_cors import CORS
+import json
+import signal
+import sys
+import os
 
-chat_msgs = []
-online_users = set()
+app = Flask(__name__)
+socketio = SocketIO(app)
+CORS(app)  # Это разрешит все источники делать запросы к вашему серверу
 
-MAX_MESSAGES_COUNT = 100
+# Хранилище для истории сообщений
+chat_history = []
+
+# Файл для хранения истории чата
 CHAT_HISTORY_FILE = 'chat_history.txt'
 
-# Функция для сохранения истории чата в файл
-def save_chat_history():
-    with open(CHAT_HISTORY_FILE, 'a', encoding='utf-8') as f:  # Добавили encoding='utf-8'
-        for msg in chat_msgs:
-            f.write(f'{msg[0]}: {msg[1]}\n')
-
-
-# Функция для загрузки истории чата
 def load_chat_history():
-    try:
-        with open(CHAT_HISTORY_FILE, 'r', encoding='utf-8') as f:  # Чтение с кодировкой UTF-8
-            return [tuple(line.strip().split(': ', 1)) for line in f.readlines()]
-    except FileNotFoundError:
-        return []
+    """Загружает историю чата из файла."""
+    if os.path.exists(CHAT_HISTORY_FILE):
+        with open(CHAT_HISTORY_FILE, 'r', encoding='utf-8') as file:
+            for line in file:
+                if line.strip():  # Пропустить пустые строки
+                    chat_history.append(json.loads(line.strip()))
 
-# основная функция
-async def main():   
-    global chat_msgs
-    chat_msgs = load_chat_history()  # Загружаем историю при старте
+def save_message_to_file(message):
+    """Сохраняет сообщение в файл."""
+    with open(CHAT_HISTORY_FILE, 'a', encoding='utf-8') as file:
+        file.write(json.dumps(message) + '\n')
 
-    put_markdown("## 🧊 Добро пожаловать в онлайн чат.")
+@app.route('/')
+def index():
+    return render_template('chat.html')
 
-    msg_box = output()
-    put_scrollable(msg_box, height=300, keep_bottom=True)
-
-    nickname = await input("Войти в чат", required=True, placeholder="Ваше имя", validate=lambda n: "Такой ник уже используется!" if n in online_users or n == '📢' else None)
-    online_users.add(nickname)
-
-    # Лог подключения в консоль браузера с ником пользователя
-    run_js(f'console.log("Пользователь {nickname} подключился")')
-
-    # Отображение всей истории чата новому пользователю
-    for msg in chat_msgs:
-        msg_box.append(put_markdown(f"`{msg[0]}`: {msg[1]}"))
-
-    # Сообщение всем участникам чата о подключении нового пользователя
-    chat_msgs.append(('📢', f'`{nickname}` присоединился к чату!'))
-    msg_box.append(put_markdown(f'📢 `{nickname}` присоединился к чату'))
+@socketio.on('send_message')
+def handle_message(data):
+    username = data['username']
+    message = data['message']
     
-    save_chat_history()  # Сохраняем историю после присоединения
+    # Создаем сообщение
+    chat_message = {'username': username, 'message': message}
 
-    # Отображаем историю сообщений и добавляем обновления для каждого сообщения
-    refresh_task = run_async(refresh_msg(nickname, msg_box))
+    # Сохраняем сообщение в истории и в файл
+    chat_history.append(chat_message)
+    save_message_to_file(chat_message)
 
-    while True:
-        data = await input_group("💭 Новое сообщение", [
-            input(placeholder="Текст сообщения ...", name="msg"),
-            actions(name="cmd", buttons=["Отправить", {'label': "Выйти из чата", 'type': 'cancel'}])
-        ], validate=lambda m: ('msg', "Введите текст сообщения!") if m["cmd"] == "Отправить" and not m['msg'] else None)
+    # Отправляем сообщение всем подключенным клиентам
+    emit('receive_message', chat_message, broadcast=True)
 
-        if data is None:
-            break
+@socketio.on('get_history')
+def get_history():
+    # Отправляем историю чата новому пользователю
+    emit('chat_history', chat_history)
 
-        # Отправляем сообщение в чат
-        msg_box.append(put_markdown(f"`{nickname}`: {data['msg']}"))
-        chat_msgs.append((nickname, data['msg']))
-        save_chat_history()  # Сохраняем историю после каждого сообщения
-
-    refresh_task.close()
-
-    online_users.remove(nickname)
-    toast("Вы вышли из чата!")
+@socketio.on('connect')
+def handle_connect():
+    # Получаем IP-адрес и порт клиента
+    client_ip = request.remote_addr
+    client_port = request.environ.get('REMOTE_PORT')
+    print(f'User connected from {client_ip}:{client_port}')  # Отправка информации на серверную консоль
     
-    # Сообщение всем о выходе пользователя
-    msg_box.append(put_markdown(f'📢 Пользователь `{nickname}` покинул чат!'))
-    chat_msgs.append(('📢', f'Пользователь `{nickname}` покинул чат!'))
-    save_chat_history()  # Сохраняем историю при выходе
+    # Отправляем историю чата при подключении
+    emit('chat_history', chat_history)
 
-    put_buttons(['Перезайти'], onclick=lambda btn: run_js('window.location.reload()'))
+    # Также уведомляем всех клиентов о новом подключении
+    emit('user_connected', {'ip': client_ip, 'port': client_port}, broadcast=True)
+
+def signal_handler(sig, frame):
+    print('Shutting down gracefully...')
+    socketio.stop()
+    sys.exit(0)
+
+if __name__ == '__main__':
+    signal.signal(signal.SIGINT, signal_handler)
+    load_chat_history()  # Загружаем историю чата при запуске
+    socketio.run(app, host='0.0.0.0', port=12345)
 
 
-# Функция для обновления сообщений
-async def refresh_msg(nickname, msg_box):
-    global chat_msgs
-    last_idx = len(chat_msgs)
 
-    while True:
-        await asyncio.sleep(1)
-        
-        for m in chat_msgs[last_idx:]:
-            if m[0] != nickname: # если сообщение не от текущего пользователя
-                msg_box.append(put_markdown(f"`{m[0]}`: {m[1]}"))
-        
-        # удаляем старые сообщения
-        if len(chat_msgs) > MAX_MESSAGES_COUNT:
-            chat_msgs = chat_msgs[len(chat_msgs) // 2:]
-        
-        last_idx = len(chat_msgs)
 
-if __name__ == "__main__":
-    start_server(main, debug=True, port=8080, cdn=False)
+
+
+
+
+
